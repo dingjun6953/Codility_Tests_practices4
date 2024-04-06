@@ -41,62 +41,34 @@ Copyright 2009–2024 by Codility Limited. All Rights Reserved. Unauthorized cop
 
 */
 
-
-
+// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
-
-// you can use includes, for example:
-// #include <algorithm>
-
-// you can write to stdout for debugging purposes, e.g.
-// cout << "this is a debug message" << endl;
-
 vector<int> solution(vector<int> &A, int K) {
-    // Implement your solution here
-
-vector<int> result;
-result=A;
-
-
- //std::vector<int> v;
-    auto size = A.size();
-    cout<<"size="<<size<<endl;
-   for (int i=0; i<size;i++){
-
-        if (i+K<size)
-        {
-            result[i+K]=A[i];
-            result[i]=A[i+K];
-            //cout<<result[i];
-            //cout<<result[i+K];
-        }
-        else
-        {
-            result[i+K-size]=A[i];
-            //cout<<result[i+K-size];
-
-        }
-
-   }
-
-   for (int i=0; i<size;i++){
-    cout<<result[i]<<endl;
-   }
-    return result;
+    vector<int> index; 
+    int size=A.size();
+     vector<int> result(size); 
+    for(int i=0; i<size; i++){       
+        index.push_back((i+K-1)%size); //index rotation
+        result[i]=A[(i+K-1)%size];      //copy element into result vector
+    }    
+    return result; 
 }
 
-
-
-int main()
-{
+int main() {
    vector<int> A = {3, 8, 9, 7, 6};
    int K = 3;
    vector<int> result;
    result=solution(A,K);
-
+   for(auto elm:result){
+       cout<< elm <<" "; 
+   }
+   cout<<endl;
+}
     return 0;
 }
+
+
+
