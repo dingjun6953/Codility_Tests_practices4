@@ -40,7 +40,35 @@ In your solution, focus on correctness. The performance of your solution will no
 Copyright 2009–2024 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.
 
 */
+//refined version and this is the best way to implement the rotation of a vector 
+#include <iostream>
+#include <vector>
+using namespace std;
 
+vector<int> solution(vector<int> &A, int K) {
+    vector<int> index; 
+    int size=A.size();
+    for(int i=0; i<size; i++){
+        index.push_back((i+K-1)%size); //only rotate the index of vector A
+    }
+    return index; 
+}
+
+int main() {   
+   vector<int> A = {3, 8, 9, 7, 6};
+   int K = 3;
+   vector<int> result;
+   result=solution(A,K);
+   for(int i=0; i<A.size(); i++)
+   {
+       cout<<A[result[i]]<<" ";
+   }
+   cout<<endl;
+    return 0;
+}
+
+/*
+//original version using vector copy, that is not good way
 // Online C++ compiler to run C++ program online
 #include <iostream>
 #include <vector>
@@ -69,6 +97,6 @@ int main() {
 }
     return 0;
 }
-
+*/
 
 
